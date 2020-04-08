@@ -124,7 +124,6 @@ void bfs2(Node *root){
 				q.push(f->right);
 			}	
 		}
-		
 	}
 	return;
 }
@@ -190,15 +189,40 @@ int replaceSum(Node *root){
 	return temp + root->data;
 }
 
-//Height Balanced Tree
-//A special tree with difference in left and right subtree is equal to 1
+//Height Balanced Tree - A Tree in which difference in height for every node is <=1 
+class HBPair{
+	public:
+		int height;
+		bool balance;
+};
 
+HBPair isHeightBalance(Node *root){
+	HBPair p;
+	if(root==NULL){
+		p.height = 0;
+		p.balance = true;
+		return p;
+	}
+	//Recursive Case
+	HBPair left = isHeightBalance(root->left);
+	HBPair right = isHeightBalance(root->right);
+	p.height = max(left.height,right.height) + 1;
+	if(abs(left.height-right.height)<=1 && left.balance && right.balance){
+		p.balance = true;
+	}
+	else{
+		p.balance = false;
+	}
+	return p;
+}
 
 int main(){
 	Node *root = buildTree();
-	bfs2(root);
-	cout<<endl;
-	replaceSum(root);
-	bfs2(root);
+	if(isHeightBalance(root).balance){
+		cout<<"Balanced";
+	}
+	else{
+		cout<<"Not Balanced";
+	}
 }
 

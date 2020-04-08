@@ -17,7 +17,7 @@ Node* insertInBST(Node *root,int data){
 	if(root == NULL){
 		return new Node(data);
 	}
-	if(data<=root->data){
+	if(data <= root->data){
 		root->left = insertInBST(root->left,data);
 	}
 	else{
@@ -114,12 +114,7 @@ bool isBST(Node *root,int minV=INT_MIN,int maxV=INT_MAX){
 
 int main(){
 	Node *root = buildBST();
-	if(isBST(root)){
-		cout<<"It is a BST";
-	}
-	else{
-		cout<<"Not a BST";
-	}
+	inorder(root);
 }
 
 
