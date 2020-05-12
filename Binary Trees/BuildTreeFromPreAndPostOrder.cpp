@@ -5,15 +5,15 @@ class Node{
 	public:
 	Node *left;
 	Node *right;
-	int data;
-	Node(int d){
+	char data;
+	Node(char d){
 		data  = d;
 		left = NULL; 
 		right = NULL;
 	}
 };
 
-Node* createTreeFromInPre(int *in,int *pre,int s,int e){
+Node* createTreeFromInPre(char *in,char *pre,int s,int e){
 	static int i = 0;
 	//Base Case
 	if(s>e){
@@ -64,8 +64,8 @@ void bfs2(Node *root){
 
 
 int main(){
-	int in[] = {3,2,8,4,1,6,7,5};
-	int pre[] = {1,2,3,4,8,5,6,7};
+	char in[] = {'D','B','H','E','A','F','C','K','I','G','L','J'};
+	char pre[] = {'A','B','D','E','H','C','F','G','I','K','J','L'};
 	int n = sizeof(in)/sizeof(in[0]);
 	Node *root = createTreeFromInPre(in,pre,0,n-1);
 	bfs2(root);

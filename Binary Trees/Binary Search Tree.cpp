@@ -61,6 +61,24 @@ void inorder(Node *root){
 	inorder(root->right);
 }
 
+void preorder(Node *root){
+	if(root == NULL){
+		return;
+	}
+	cout<<root->data<<" ";
+	preorder(root->left);
+	preorder(root->right);
+}
+
+void postorder(Node *root){
+	if(root == NULL){
+		return;
+	}
+	postorder(root->left);
+	postorder(root->right);
+	cout<<root->data<<" ";
+}
+
 Node* deleteInBST(Node *root,int data){
 	if(root == NULL){
 		return NULL;
@@ -112,9 +130,24 @@ bool isBST(Node *root,int minV=INT_MIN,int maxV=INT_MAX){
 	return false;
 }
 
+int height(Node *root){
+	if(root == NULL){
+		return 0;
+	}
+	int h1 = height(root->left);
+	int h2 = height(root->right);
+	return max(h1,h2) + 1;
+}
+
 int main(){
 	Node *root = buildBST();
+	preorder(root);
+	cout<<endl;
 	inorder(root);
+	cout<<endl;
+	postorder(root);
+	cout<<endl;
+	cout<<"Height of tree : "<<height(root);
 }
 
 
